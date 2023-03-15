@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'model.dart';
 
 class RadioStationsPage extends StatefulWidget {
-  const RadioStationsPage({super.key});
+  const RadioStationsPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -75,20 +75,16 @@ class _RadioStationsPageState extends State<RadioStationsPage> {
             final radioStations = snapshot.data!;
             final displayStations =
                 _searchController.text.isEmpty ? radioStations : _searchResults;
-            return ListView.builder(
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
               itemCount: displayStations.length,
               itemBuilder: (context, index) {
                 final radioStation = displayStations[index];
                 return ListTile(
                   title: Text(radioStation.name),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            PlayerWidget(radioStation: radioStation),
-                      ),
-                    );
+                    _onRadioStationSelected(radioStation);
                   },
                 );
               },
@@ -103,6 +99,15 @@ class _RadioStationsPageState extends State<RadioStationsPage> {
             );
           }
         },
+      ),
+    );
+  }
+
+  void _onRadioStationSelected(RadioStation radioStation) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlayerWidget(radioStation: radioStation),
       ),
     );
   }

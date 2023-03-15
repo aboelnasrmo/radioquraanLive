@@ -7,6 +7,7 @@ void main() {
   runApp(MyApp());
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   AudioPlayer? audioPlayer;
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: 'Radio App',
-      home: RadioStationsPage(),
+      home: const RadioStationsPage(),
     );
   }
 }

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -10,6 +11,7 @@ class PlayerWidget extends StatefulWidget {
   const PlayerWidget({required this.radioStation, Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PlayerWidgetState createState() => _PlayerWidgetState();
 }
 
@@ -17,7 +19,6 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   late AudioPlayer _audioPlayer;
   late PlayerState _playerState;
   late StreamSubscription<PlayerState> _playerStateSubscription;
-
   @override
   void initState() {
     super.initState();
@@ -29,6 +30,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         _playerState = state;
       });
     });
+    _play(); // Start playing audio when the widget is loaded
   }
 
   @override
