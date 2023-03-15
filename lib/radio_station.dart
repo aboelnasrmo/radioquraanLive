@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:radioquraan/playerWidget.dart';
@@ -23,6 +24,7 @@ class _RadioStationsPageState extends State<RadioStationsPage> {
   void initState() {
     super.initState();
     _radioStationsFuture = fetchRadioStations();
+
     _searchResults = [];
   }
 
@@ -77,16 +79,20 @@ class _RadioStationsPageState extends State<RadioStationsPage> {
             final displayStations =
                 _searchController.text.isEmpty ? radioStations : _searchResults;
             return GridView.builder(
+              shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemCount: displayStations.length,
               itemBuilder: (context, index) {
                 final radioStation = displayStations[index];
-                return ListTile(
-                  title: Text(radioStation.name),
-                  onTap: () {
-                    _onRadioStationSelected(radioStation);
-                  },
+                return Card(
+                  elevation: 10,
+                  child: ListTile(
+                    title: Text(radioStation.name),
+                    onTap: () {
+                      _onRadioStationSelected(radioStation);
+                    },
+                  ),
                 );
               },
             );

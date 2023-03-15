@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:radioquraan/model.dart';
+import 'package:radioquraan/radio_station.dart';
 
 class PlayerWidget extends StatefulWidget {
   final RadioStation radioStation;
@@ -24,6 +25,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     super.initState();
     _audioPlayer = AudioPlayer();
     _playerState = PlayerState.STOPPED;
+    _playerState = PlayerState.COMPLETED;
     _playerStateSubscription =
         _audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
