@@ -1,6 +1,6 @@
 // ignore: file_names
 import 'dart:async';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:radioquraan/model.dart';
@@ -62,6 +62,12 @@ class _PlayerWidgetState extends State<PlayerWidget> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          if (_playerState == PlayerState.PLAYING)
+            const SpinKitWave(
+              color: Colors.greenAccent,
+              size: 50.0,
+            ),
+          const SizedBox(height: 16),
           Text(widget.radioStation.name),
           const SizedBox(height: 16),
           Row(

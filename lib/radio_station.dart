@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:radioquraan/playerWidget.dart';
 import 'dart:convert';
 
@@ -95,7 +96,10 @@ class _RadioStationsPageState extends State<RadioStationsPage> {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: SpinKitFadingCircle(
+                color: Colors.greenAccent,
+                size: 50.0,
+              ),
             );
           }
         },
